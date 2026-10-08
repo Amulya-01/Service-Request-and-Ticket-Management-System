@@ -1,0 +1,31 @@
+VPN Troubleshooting
+
+1. Check that the computer has an active internet connection before connecting to the VPN.
+
+2. Open the company VPN application and verify that the correct VPN profile is selected.
+
+3. Enter the correct company username and password.
+
+4. If multi-factor authentication is required, complete the authentication process.
+
+5. If the VPN connection fails, disconnect and try connecting again.
+
+6. Restart the VPN application if it is not responding.
+
+7. Restart the computer and try the VPN connection again.
+
+8. Check whether the VPN application shows an error message and note the message.
+
+9. If the VPN connects but internal company applications are not accessible, disconnect and reconnect to the VPN.
+
+10. Avoid using multiple VPN applications at the same time because they can interfere with each other.
+
+11. If the VPN continues to fail after basic troubleshooting, create an IT service request and include the error message and time of the failure.
+
+Common VPN Issues:
+- VPN not connecting
+- VPN connection failing
+- VPN disconnecting frequently
+- VPN authentication failure
+- Internal applications unavailable
+- VPN application not responding

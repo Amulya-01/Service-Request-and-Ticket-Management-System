@@ -1,0 +1,29 @@
+Network Connectivity Troubleshooting
+
+1. Check whether the network cable is properly connected if using a wired connection.
+
+2. Check whether Wi-Fi is turned on and the correct Wi-Fi network is selected.
+
+3. Disconnect from the Wi-Fi network and reconnect using the correct password.
+
+4. Restart the computer and try connecting to the network again.
+
+5. Check whether other devices can connect to the same network. If no devices can connect, the network or router may have an issue.
+
+6. If the internet is slow, close unnecessary applications and browser tabs that may be using network bandwidth.
+
+7. If a website is not opening, try opening another website to check whether the problem affects only one website.
+
+8. If the connection keeps disconnecting, restart the Wi-Fi adapter or reconnect to the network.
+
+9. For office network problems, check whether the employee is connected to the correct corporate network.
+
+10. If the network problem continues after basic troubleshooting, create an IT service request with details about the problem and any error message shown.
+
+Common Network Issues:
+- No internet connection
+- Wi-Fi not connecting
+- Slow internet
+- Frequent disconnection
+- Network cable not detected
+- Corporate network unavailable

@@ -1,0 +1,31 @@
+Outlook Troubleshooting
+
+1. If Outlook is not opening, restart the computer and try opening Outlook again.
+
+2. Check whether the computer has an active internet connection.
+
+3. If Outlook is not receiving new emails, check the internet connection and refresh the mailbox.
+
+4. If emails are stuck in the Outbox, check the internet connection and try sending the email again.
+
+5. If Outlook is slow, close unnecessary applications and restart Outlook.
+
+6. If Outlook freezes or stops responding, close it and open it again.
+
+7. If the mailbox is full, delete unnecessary emails and empty the Deleted Items folder.
+
+8. If Outlook repeatedly asks for a password, verify that the correct company email account is being used.
+
+9. If an email attachment cannot be opened, check the file type and confirm that the file is not corrupted.
+
+10. If Outlook continues to have problems after basic troubleshooting, create an IT service request with the error message and details of the issue.
+
+Common Outlook Issues:
+- Outlook not opening
+- Emails not sending
+- Emails not receiving
+- Emails stuck in Outbox
+- Outlook running slowly
+- Outlook freezing
+- Mailbox full
+- Repeated password prompts

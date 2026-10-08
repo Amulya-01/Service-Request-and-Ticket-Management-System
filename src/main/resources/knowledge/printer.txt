@@ -1,0 +1,31 @@
+Printer Troubleshooting
+
+1. Check that the printer is switched on and has enough paper.
+
+2. Check whether the printer is connected to the correct network or computer.
+
+3. Make sure the correct printer is selected when printing a document.
+
+4. Check the printer queue for documents that are stuck.
+
+5. Cancel stuck print jobs and try printing the document again.
+
+6. Restart the printer and try the print job again.
+
+7. Check whether the printer shows any error message on its display.
+
+8. If the printer is offline, check its network connection and restart the printer.
+
+9. If the print quality is poor, check the ink or toner level and replace it if required.
+
+10. If a document is not printing, try printing a different document to determine whether the issue is with the document or printer.
+
+11. If the printer continues to have problems after basic troubleshooting, create an IT service request with the printer name and error details.
+
+Common Printer Issues:
+- Printer not printing
+- Printer offline
+- Print jobs stuck
+- Poor print quality
+- Printer not detected
+- Paper or toner issue

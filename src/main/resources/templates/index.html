@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Service Request Management System</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-teal: #0D9488;
+            --primary-teal-hover: #0F766E;
+            --dark-charcoal: #0F172A;
+            --slate-gray: #475569;
+            --page-bg: #F8FAFC;
+            --border-color: #E2E8F0;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--page-bg);
+            color: var(--dark-charcoal);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: var(--dark-charcoal) !important;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--white) !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-icon-svg {
+            width: 28px;
+            height: 28px;
+            background: var(--primary-teal);
+            color: var(--white);
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+        }
+
+        .btn-nav-primary {
+            background-color: var(--primary-teal);
+            border-color: var(--primary-teal);
+            color: var(--white);
+            font-weight: 600;
+            border-radius: 6px;
+            padding: 0.45rem 1.1rem;
+        }
+
+        .btn-nav-primary:hover {
+            background-color: var(--primary-teal-hover);
+            border-color: var(--primary-teal-hover);
+            color: var(--white);
+        }
+
+        .btn-nav-outline {
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: var(--white);
+            font-weight: 500;
+            border-radius: 6px;
+            padding: 0.45rem 1.1rem;
+        }
+
+        .btn-nav-outline:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 4rem 0 3rem;
+            flex: 1;
+        }
+
+        .hero-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 3.5rem 3rem 2.5rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+        }
+
+        .badge-portal {
+            display: inline-block;
+            background: rgba(13, 148, 136, 0.08);
+            color: var(--primary-teal);
+            border: 1px solid rgba(13, 148, 136, 0.2);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            letter-spacing: 0.04em;
+            margin-bottom: 1.5rem;
+        }
+
+        h1.main-title {
+            font-weight: 700;
+            font-size: 2.8rem;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            color: var(--dark-charcoal);
+        }
+
+        .lead-text {
+            color: var(--slate-gray);
+            font-size: 1.08rem;
+            font-weight: 400;
+            max-width: 700px;
+            margin: 1.25rem auto 2.25rem;
+            line-height: 1.7;
+        }
+
+        .btn-teal {
+            background-color: var(--primary-teal);
+            border-color: var(--primary-teal);
+            color: var(--white);
+            font-weight: 600;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+        }
+
+        .btn-teal:hover {
+            background-color: var(--primary-teal-hover);
+            border-color: var(--primary-teal-hover);
+            color: var(--white);
+        }
+
+        .btn-slate-outline {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            color: var(--dark-charcoal);
+            font-weight: 600;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+        }
+
+        .btn-slate-outline:hover {
+            background-color: var(--page-bg);
+            color: var(--dark-charcoal);
+            border-color: #CBD5E1;
+        }
+
+        /* Hero Highlights Bar */
+        .hero-highlights {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--slate-gray);
+        }
+
+        .highlight-icon {
+            color: var(--primary-teal);
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Features Section */
+        .features-section {
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 2rem 1.5rem;
+            height: 100%;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+        }
+
+        .feature-icon-wrapper {
+            width: 42px;
+            height: 42px;
+            background: rgba(13, 148, 136, 0.08);
+            color: var(--primary-teal);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--dark-charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-desc {
+            font-size: 0.88rem;
+            color: var(--slate-gray);
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        /* Info Section & Steps */
+        .info-section {
+            margin-top: 3rem;
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 2.2rem;
+            height: 100%;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
+        }
+
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--dark-charcoal);
+            margin-bottom: 1.5rem;
+        }
+
+        .info-text {
+            color: var(--slate-gray);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        .manual-steps-container {
+            position: relative;
+        }
+
+        .manual-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 1.25rem;
+            position: relative;
+        }
+
+        .manual-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: 14px;
+            bottom: -16px;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .step-number {
+            min-width: 28px;
+            height: 28px;
+            background: rgba(13, 148, 136, 0.1);
+            color: var(--primary-teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.82rem;
+            font-weight: 700;
+            z-index: 1;
+        }
+
+        .step-content {
+            font-size: 0.9rem;
+            color: var(--slate-gray);
+            line-height: 1.5;
+        }
+
+        .step-content strong {
+            color: var(--dark-charcoal);
+        }
+
+        /* Expanded Corporate Footer */
+        footer {
+            background-color: var(--dark-charcoal);
+            color: #94A3B8;
+            padding: 3.5rem 0 2rem;
+            margin-top: 5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-brand {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-desc {
+            font-size: 0.85rem;
+            color: #94A3B8;
+            line-height: 1.6;
+            max-width: 320px;
+        }
+
+        .footer-heading {
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-links a {
+            color: #94A3B8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.15s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.1);
+            color: #34D399;
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background-color: #34D399;
+            border-radius: 50%;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            margin-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.82rem;
+            color: #64748B;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 2.5rem 0;
+            }
+
+            .hero-card {
+                padding: 2.5rem 1.5rem;
+            }
+
+            h1.main-title {
+                font-size: 2.1rem;
+            }
+
+            .lead-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <span class="brand-icon-svg">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                </svg>
+            </span>
+            Service Request Management System
+        </a>
+
+        <div class="d-flex align-items-center gap-2">
+            <a href="/register" class="btn btn-nav-primary btn-sm">
+                Register
+            </a>
+            <a href="/login" class="btn btn-nav-outline btn-sm">
+                Login
+            </a>
+        </div>
+    </div>
+</nav>
+
+<main class="hero-section">
+    <div class="container">
+        <div class="hero-card text-center">
+            <div class="badge-portal">
+                IT SERVICE REQUEST PORTAL
+            </div>
+
+            <h1 class="main-title">
+                Manage Your IT Service Requests
+            </h1>
+
+            <p class="lead-text">
+                Submit IT service requests, provide the required details,
+                and track the progress of your requests through a centralized
+                service management portal.
+            </p>
+
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="/register" class="btn btn-teal">
+                    Create Account
+                </a>
+
+                <a href="/login" class="btn btn-slate-outline">
+                    Login to Portal
+                </a>
+            </div>
+
+            <div class="hero-highlights">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="highlight-item">
+                            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            24/7 Service Desk Availability
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="highlight-item">
+                            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            Encrypted & Secure Data Handling
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="highlight-item">
+                            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            Automated SLA Tracking
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="features-section">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </div>
+                        <div class="feature-title">
+                            Submit Service Requests
+                        </div>
+                        <p class="feature-desc">
+                            Create a service request by providing the issue,
+                            description, priority, and supporting screenshot
+                            when required.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        </div>
+                        <div class="feature-title">
+                            Track Request Progress
+                        </div>
+                        <p class="feature-desc">
+                            View the current status of submitted requests and
+                            follow their progress from submission through
+                            resolution.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </div>
+                        <div class="feature-title">
+                            Centralized Request History
+                        </div>
+                        <p class="feature-desc">
+                            Access service request information in one place,
+                            including priority, status, assignment, and
+                            resolution details.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="info-card">
+                        <div class="section-title">
+                            How to Use the Portal
+                        </div>
+
+                        <div class="manual-steps-container">
+                            <div class="manual-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <strong>Register or Login</strong><br>
+                                    Create an account using your details or log in
+                                    with your registered email and password.
+                                </div>
+                            </div>
+
+                            <div class="manual-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <strong>Create a Service Request</strong><br>
+                                    Select the relevant issue, provide a description,
+                                    choose the priority, and optionally attach a PNG
+                                    screenshot.
+                                </div>
+                            </div>
+
+                            <div class="manual-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <strong>Track Your Request</strong><br>
+                                    Open My Tickets to view submitted service
+                                    requests and their current status.
+                                </div>
+                            </div>
+
+                            <div class="manual-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <strong>Update Request Details</strong><br>
+                                    If required, update the issue description or
+                                    priority while the request is being processed.
+                                </div>
+                            </div>
+
+                            <div class="manual-step mb-0">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <strong>View Resolution</strong><br>
+                                    Once the request is processed, view the updated
+                                    status and resolution details from the ticket.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="info-card">
+                        <div class="section-title">
+                            About the Portal
+                        </div>
+
+                        <p class="info-text">
+                            The Service Request Management System provides a
+                            centralized interface for employees to submit and
+                            monitor IT service requests.
+                        </p>
+
+                        <p class="info-text mt-3">
+                            The portal organizes request information such as the
+                            issue, description, priority, status, assignment,
+                            and resolution details so that requests can be
+                            tracked throughout their lifecycle.
+                        </p>
+
+                        <p class="info-text mt-3">
+                            The system is designed to provide a simple and
+                            structured way for employees to communicate IT
+                            service requirements and monitor request progress.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="row g-4 justify-content-between">
+            <div class="col-lg-5 col-md-6">
+                <div class="footer-brand">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                    </svg>
+                    Service Request Management System
+                </div>
+                <p class="footer-desc">
+                    Centralized employee portal engineered for efficient internal IT ticket handling, lifecycle management, and transparent status updates.
+                </p>
+                <div class="mt-3">
+                    <span class="status-badge">
+                        <span class="status-dot"></span>
+                        System Operational
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-3 col-6">
+                <div class="footer-heading">Portal Access</div>
+                <ul class="footer-links">
+                    <li><a href="/login">Account Login</a></li>
+                    <li><a href="/register">Employee Registration</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-6">
+                <div class="footer-heading">System Specs</div>
+                <ul class="footer-links">
+                    <li><a href="#">Spring Boot / Thymeleaf</a></li>
+                    <li><a href="#">Automated SLA Timers</a></li>
+                    <li><a href="#">AES-256 Encrypted Security</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom text-center">
+            <p class="mb-0">&copy; 2026 Service Request Management System. Internal Employee Support Portal.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
